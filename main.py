@@ -10,15 +10,15 @@ def main():
     # List of all possible parameters for customization
     parameter_list = """
     Available Parameters for Customization:
-    - size_of_grid: Size of the gridworld (default is 5) (5x5).
+    - size_of_grid: Size of the gridworld (default is 5) (5x5 grid).
     - agent_start_x: Starting x-coordinate of the agent (default is 0).
     - agent_start_y: Starting y-coordinate of the agent (default is 0).
     - goal_x: x-coordinate of the goal position (default is bottom-right corner).
     - goal_y: y-coordinate of the goal position (default is bottom-right corner).
-    - learning_rate: Learning rate for Q-learning (default is 0.2).
+    - learning_rate: Learning rate for Q-learning (default is 0.1).
     - discount_factor: Discount factor for Q-learning (default is 0.9).
     - exploration_rate: Initial exploration rate (default is 1.0).
-    - min_exploration_rate: Minimum exploration rate (default is 0.1).
+    - min_exploration_rate: Minimum exploration rate (default is 0.01).
     - exploration_decay_rate: Decay rate for exploration (default is 0.995).
     - n_episodes: Number of episodes to run the simulation (default is 1000).
     - render: Set to True to visually render the gridworld (default is False).
