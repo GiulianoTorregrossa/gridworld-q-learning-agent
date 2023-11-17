@@ -29,7 +29,7 @@ To start the simulation with default parameters, run:
 python main.py
 ```
 
-You can also customize the simulation by adjusting various parameters in the `run_simulation.py` script.
+You can also customize the simulation by adjusting various parameters in the `main.py` script.
 
 ### Customizable Parameters
 The simulation can be customized using the following parameters:
@@ -48,6 +48,11 @@ The simulation can be customized using the following parameters:
 
 ### Fixed Parameters
 - `n_actions`: Number of possible actions (Fixed at 4 - up, down, left, right).
+
+### Conditional Rendering
+The gridworld is rendered conditionally to optimize performance and visualization:
+- It renders every 50 episodes and on the last episode.
+- This allows you to observe the agent's progress at regular intervals without rendering every single step, which can be resource-intensive.
 
 ## Contributing
 Contributions to the project are welcome. Please follow these steps:
