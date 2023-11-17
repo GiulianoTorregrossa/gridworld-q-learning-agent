@@ -1,7 +1,7 @@
-from gridworld import Gridworld
+from src.gridworld import Gridworld
 
 # Configuration parameters
-from q_learning_agent import QLearningAgent
+from src.q_learning_agent import QLearningAgent
 
 # Variables
 SIZE_OF_GRID = 50
