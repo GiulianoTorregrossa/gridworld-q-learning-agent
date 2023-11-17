@@ -1,62 +1,57 @@
-from src.gridworld import Gridworld
+# run_simulation.py
+# This script demonstrates the Q-learning algorithm in a gridworld environment.
 
-# Configuration parameters
-from src.q_learning_agent import QLearningAgent
-
-# Variables
-SIZE_OF_GRID = 50
-AGENT_START_X = 0
-AGENT_START_Y = 0
-GOAL_X = 30
-GOAL_Y = 45
-N_ACTIONS = 4  # Up, down, left, right
-LEARNING_RATE = 0.2
-DISCOUNT_FACTOR = 0.9
-EXPLORATION_RATE = 1
-MIN_EXPLORATION_RATE = 0.01
-EXPLORATION_DECAY_RATE = 0.9995
-N_STATES = SIZE_OF_GRID * SIZE_OF_GRID
-N_EPISODES = 20000
+from src.simulation import run_simulation
 
 
-def initialize_gridworld(size, agent_start_x, agent_start_y, goal_x, goal_y):
-    """Initialize and return a Gridworld instance with specified configurations."""
-    return Gridworld(size=size, agent_x=agent_start_x, agent_y=agent_start_y, goal_x=goal_x, goal_y=goal_y)
+def main():
+    print("Starting Q-learning Gridworld Simulation")
+
+    # List of all possible parameters for customization
+    parameter_list = """
+    Available Parameters for Customization:
+    - size_of_grid: Size of the gridworld (default is 5) (5x5).
+    - agent_start_x: Starting x-coordinate of the agent (default is 0).
+    - agent_start_y: Starting y-coordinate of the agent (default is 0).
+    - goal_x: x-coordinate of the goal position (default is bottom-right corner).
+    - goal_y: y-coordinate of the goal position (default is bottom-right corner).
+    - learning_rate: Learning rate for Q-learning (default is 0.2).
+    - discount_factor: Discount factor for Q-learning (default is 0.9).
+    - exploration_rate: Initial exploration rate (default is 1.0).
+    - min_exploration_rate: Minimum exploration rate (default is 0.1).
+    - exploration_decay_rate: Decay rate for exploration (default is 0.995).
+    - n_episodes: Number of episodes to run the simulation (default is 1000).
+    - render: Set to True to visually render the gridworld (default is False).
+    """
+    print(parameter_list)
+
+    # Default run with predefined settings
+    print("Running with default settings:")
+    run_simulation(render=True)
+
+    # Custom run example
+    print("Running a custom simulation with a different grid size and fewer episodes:")
+    run_simulation(size_of_grid=10, n_episodes=5000, render=True)
+
+    # Advanced customization example
+    print("Running with advanced settings (small exploration rate and different goal):")
+    run_simulation(
+        size_of_grid=50,
+        agent_start_x=0,
+        agent_start_y=0,
+        goal_x=35,
+        goal_y=45,
+        learning_rate=0.2,
+        discount_factor=0.9,
+        exploration_rate=1,
+        min_exploration_rate=0.01,
+        exploration_decay_rate=0.9995,
+        n_episodes=20000,
+        render=False
+    )
+
+    print("Simulation complete. Explore the code to see more customization options!")
 
 
-def initialize_agent(n_states, n_actions, learning_rate, discount_factor, exploration_rate):
-    """Initialize and return a QLearningAgent instance with specified configurations."""
-    return QLearningAgent(n_states, n_actions, learning_rate, discount_factor, exploration_rate)
-
-
-def train_agent(gridworld, agent, n_episodes, size_of_grid, min_exploration_rate, exploration_decay_rate):
-    """Train the agent in the gridworld environment over a specified number of episodes."""
-    for episode in range(n_episodes):
-        state = QLearningAgent.get_state_index(gridworld.reset(), size_of_grid)
-        done = False
-        step = 0
-
-        while not done:
-            step += 1
-            action_num = agent.select_action(state)
-            action = QLearningAgent.action_to_string(action_num)
-
-            new_state, reward, done = gridworld.step(action)
-            new_state = QLearningAgent.get_state_index(new_state, size_of_grid)
-
-            agent.update_q_table(state, action_num, reward, new_state)
-            state = new_state
-
-            if done:
-                print(f"Episode: {episode}, Step: {step}, Epsilon: {agent.exploration_rate}")
-                agent.exploration_rate = max(min_exploration_rate, agent.exploration_rate * exploration_decay_rate)
-
-
-if __name__ == '__main__':
-    # Initialize environment and agent
-    gridworld = initialize_gridworld(SIZE_OF_GRID, AGENT_START_X, AGENT_START_Y, GOAL_X, GOAL_Y)
-    agent = initialize_agent(N_STATES, N_ACTIONS, LEARNING_RATE, DISCOUNT_FACTOR, EXPLORATION_RATE)
-
-    # Train the agent
-    train_agent(gridworld, agent, N_EPISODES, SIZE_OF_GRID, MIN_EXPLORATION_RATE, EXPLORATION_DECAY_RATE)
-
+if __name__ == "__main__":
+    main()
