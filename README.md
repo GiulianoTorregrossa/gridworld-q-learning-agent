@@ -1,4 +1,4 @@
-# Q-Learning in Gridworld
+# Gridworld Q-Learning Agent
 
 ## Description
 Explore reinforcement learning with this interactive Q-learning gridworld simulation. This project features a Python implementation of a Q-learning agent in a grid-based environment, designed to demonstrate key concepts of reinforcement learning in a clear and hands-on manner. Ideal for students, educators, and AI enthusiasts interested in the basics of Q-learning algorithms.
