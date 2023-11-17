@@ -1,4 +1,4 @@
-# run_simulation.py
+# main.py
 # This script demonstrates the Q-learning algorithm in a gridworld environment.
 
 from src.simulation import run_simulation
